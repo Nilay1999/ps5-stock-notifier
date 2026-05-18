@@ -24,10 +24,11 @@ async function checkSite(
   checker: BrowserChecker,
   notifier: TelegramNotifier,
   state: StoredState,
-  site: SiteConfig
+  site: SiteConfig,
+  pincode: string | undefined
 ): Promise<void> {
   for (const url of site.urls) {
-    const result = await checker.check(site, url);
+    const result = await checker.check(site, url, pincode);
     console.log(formatResult(result));
 
     let alertedAt: string | undefined;
@@ -40,6 +41,8 @@ async function checkSite(
     }
 
     recordResult(result, state, alertedAt);
+
+    // Polite delay between URLs of the same site
     await sleep(1500 + Math.floor(Math.random() * 1500));
   }
 }
@@ -52,12 +55,17 @@ async function main(): Promise<void> {
   const notifier = new TelegramNotifier(runtime);
   const enabledSites = appConfig.sites.filter((site) => site.enabled);
 
+  // Use the first pincode for delivery checks; undefined if none configured
+  const pincode = runtime.pincodes[0] ?? undefined;
+
   if (!notifier.enabled) {
     console.warn("Telegram variables are missing. Checks will run, but alerts will be skipped.");
   }
 
   console.log(`Loaded ${enabledSites.length} enabled retailer configs.`);
-  console.log(`Using pincodes ${runtime.pincodes.join(", ")}; interval ${runtime.checkIntervalMs / 1000}s.`);
+  console.log(
+    `Using pincode ${pincode ?? "(none)"}; interval ${runtime.checkIntervalMs / 1000}s.`
+  );
 
   await checker.start();
 
@@ -79,7 +87,7 @@ async function main(): Promise<void> {
     while (true) {
       const startedAt = Date.now();
       for (const site of enabledSites) {
-        await checkSite(checker, notifier, state, site);
+        await checkSite(checker, notifier, state, site, pincode);
         await saveState(runtime.stateFile, state);
       }
 

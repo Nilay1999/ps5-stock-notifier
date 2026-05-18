@@ -1,0 +1,132 @@
+{
+  "sites": [
+    {
+      "id": "amazon-in",
+      "name": "Amazon India",
+      "enabled": true,
+      "urls": [
+        "https://www.amazon.in/s?k=PlayStation+5+Slim+Console+Disc+Edition",
+        "https://www.amazon.in/s?k=PS5+Slim+Disc+Edition"
+      ],
+      "productCardSelector": "div[data-component-type='s-search-result']",
+      "titleMustContain": ["playstation", "slim"],
+      "inStockPatterns": ["add to cart", "buy now", "in stock"],
+      "outOfStockPatterns": [
+        "currently unavailable",
+        "out of stock",
+        "unavailable",
+        "we don't know when or if this item will be back in stock"
+      ],
+      "pincode": {
+        "inputSelector": "#GLUXZipUpdateInput",
+        "submitSelector": "#GLUXZipUpdate input[type='submit'], #GLUXZipUpdate button",
+        "confirmSelector": "#GLUXZipConfirmationValue"
+      }
+    },
+    {
+      "id": "flipkart",
+      "name": "Flipkart",
+      "enabled": true,
+      "urls": [
+        "https://www.flipkart.com/search?q=playstation+5+slim+disc+edition",
+        "https://www.flipkart.com/search?q=ps5+slim+disc+edition"
+      ],
+      "productCardSelector": "div[data-id], div._1AtVbE, div._75nlfW",
+      "titleMustContain": ["playstation", "slim"],
+      "inStockPatterns": ["add to cart", "buy now"],
+      "outOfStockPatterns": [
+        "sold out",
+        "currently out of stock",
+        "coming soon",
+        "notify me"
+      ],
+      "pincode": {
+        "inputSelector": "input[placeholder*='pincode'], input._36yFo0",
+        "submitSelector": "span._2P_LDn, button:has-text('Check')"
+      }
+    },
+    {
+      "id": "croma",
+      "name": "Croma",
+      "enabled": true,
+      "urls": [
+        "https://www.croma.com/searchB?q=playstation%205%20slim%20console%3Arelevance&text=playstation%205%20slim%20console"
+      ],
+      "productCardSelector": "li.product-item, div.product-item, div[data-testid='product-card']",
+      "titleMustContain": ["playstation", "slim"],
+      "inStockPatterns": [
+        "add to cart",
+        "buy now",
+        "delivery available",
+        "express delivery",
+        "store pickup"
+      ],
+      "outOfStockPatterns": [
+        "out of stock",
+        "currently unavailable",
+        "notify me",
+        "sold out",
+        "not available",
+        "no results found",
+        "we couldn't find"
+      ]
+    },
+    {
+      "id": "reliance-digital",
+      "name": "Reliance Digital",
+      "enabled": true,
+      "urls": [
+        "https://www.reliancedigital.in/search?q=playstation+5+slim+disc"
+      ],
+      "productCardSelector": "div.sp__product, div[data-testid='product-card'], li.product",
+      "titleMustContain": ["playstation", "slim"],
+      "inStockPatterns": ["add to cart", "buy now", "delivery available"],
+      "outOfStockPatterns": [
+        "out of stock",
+        "currently unavailable",
+        "notify me",
+        "sold out",
+        "not available",
+        "no results",
+        "no products found"
+      ]
+    },
+    {
+      "id": "vijay-sales",
+      "name": "Vijay Sales",
+      "enabled": true,
+      "urls": [
+        "https://www.vijaysales.com/search/PlayStation%205%20Slim"
+      ],
+      "productCardSelector": "div.product-card, div.product-item, li.product-item",
+      "titleMustContain": ["playstation", "slim"],
+      "inStockPatterns": ["add to cart", "buy now"],
+      "outOfStockPatterns": [
+        "out of stock",
+        "currently unavailable",
+        "notify me",
+        "sold out",
+        "not available",
+        "enquire now",
+        "call to order",
+        "no products found",
+        "no results found"
+      ]
+    },
+    {
+      "id": "blinkit",
+      "name": "Blinkit",
+      "enabled": false,
+      "urls": [
+        "https://blinkit.com/s/?q=playstation%205%20slim%20disc"
+      ],
+      "inStockPatterns": ["add to cart"],
+      "outOfStockPatterns": [
+        "out of stock",
+        "currently unavailable",
+        "not available",
+        "sold out"
+      ]
+    }
+  ]
+}

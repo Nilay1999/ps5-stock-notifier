@@ -3,7 +3,12 @@
     "allow": [
       "Bash(npm run *)",
       "Bash(curl *)",
-      "Bash(docker build *)"
+      "Bash(docker build *)",
+      "WebSearch",
+      "Bash(gh auth *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)"
     ]
   }
 }

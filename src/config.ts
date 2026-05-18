@@ -1,10 +1,23 @@
 import { readFile } from "node:fs/promises";
-import type { AppConfig, SiteConfig } from "./types.js";
+import type { AppConfig, PincodeConfig, SiteConfig } from "./types.js";
 
 function assertStringArray(value: unknown, field: string): asserts value is string[] {
   if (!Array.isArray(value) || value.some((item) => typeof item !== "string" || item.trim() === "")) {
     throw new Error(`${field} must be a non-empty string array`);
   }
+}
+
+function validatePincode(raw: unknown, path: string): PincodeConfig | undefined {
+  if (raw == null) return undefined;
+  const obj = raw as Partial<PincodeConfig>;
+  if (!obj.inputSelector || !obj.submitSelector) {
+    throw new Error(`${path}.pincode requires inputSelector and submitSelector`);
+  }
+  return {
+    inputSelector: obj.inputSelector,
+    submitSelector: obj.submitSelector,
+    confirmSelector: obj.confirmSelector ?? undefined,
+  };
 }
 
 function validateSite(site: Partial<SiteConfig>, index: number): SiteConfig {
@@ -16,13 +29,20 @@ function validateSite(site: Partial<SiteConfig>, index: number): SiteConfig {
   assertStringArray(site.inStockPatterns, `sites[${index}].inStockPatterns`);
   assertStringArray(site.outOfStockPatterns, `sites[${index}].outOfStockPatterns`);
 
+  if (site.titleMustContain != null) {
+    assertStringArray(site.titleMustContain, `sites[${index}].titleMustContain`);
+  }
+
   return {
     id: site.id,
     name: site.name,
     enabled: site.enabled !== false,
     urls: site.urls,
     inStockPatterns: site.inStockPatterns,
-    outOfStockPatterns: site.outOfStockPatterns
+    outOfStockPatterns: site.outOfStockPatterns,
+    productCardSelector: site.productCardSelector ?? undefined,
+    titleMustContain: site.titleMustContain ?? undefined,
+    pincode: validatePincode(site.pincode, `sites[${index}]`),
   };
 }
 
