@@ -1,0 +1,50 @@
+name: PS5 Stock Check
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # every 5 minutes (GitHub's minimum interval)
+  workflow_dispatch:          # also allow manual runs from the Actions tab
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Cache the Chromium binary — only re-downloaded when package-lock.json changes
+      - name: Cache Playwright Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ hashFiles('package-lock.json') }}
+
+      # OS-level libs (libnss, libgbm, etc.) must be installed fresh each run;
+      # Playwright skips the browser download if the cache above was restored.
+      - name: Install Playwright Chromium
+        run: npx playwright install chromium --with-deps
+
+      # Persist stock state across runs so we only alert on status changes
+      - name: Restore stock state
+        uses: actions/cache@v4
+        with:
+          path: .stock-state.json
+          key: stock-state-${{ github.run_id }}
+          restore-keys: stock-state-
+
+      - name: Check stock
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          PINCODES: ${{ vars.PINCODES }}
+          HEADLESS: 'true'
+          RUN_ONCE: 'true'
+        run: npm run dev
