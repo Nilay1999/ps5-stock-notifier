@@ -1,0 +1,23 @@
+{
+  "name": "ps5-stock-notifier-india",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PS5 stock notifier for Indian ecommerce retailers with Telegram alerts.",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "build": "tsc -p tsconfig.json",
+    "check": "tsc -p tsconfig.json --noEmit",
+    "install:browsers": "playwright install chromium"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "playwright": "^1.49.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}

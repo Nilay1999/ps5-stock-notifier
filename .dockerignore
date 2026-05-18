@@ -1,0 +1,7 @@
+.env
+.env.*
+.stock-state.json
+dist/
+node_modules/
+.git/
+*.md
