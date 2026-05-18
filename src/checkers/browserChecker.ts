@@ -102,6 +102,12 @@ export class BrowserChecker {
       const bodyText = await page.locator("body").innerText({ timeout: 10000 });
       const match = classifyStock(bodyText, site);
 
+      if (match.status === "unknown") {
+        // Log a snippet so patterns can be tuned when pages render unexpected content
+        console.log(`[debug] ${site.name} title: ${title ?? "(none)"}`);
+        console.log(`[debug] ${site.name} snippet: ${normalize(bodyText).slice(0, 600)}`);
+      }
+
       return {
         siteId: site.id,
         siteName: site.name,

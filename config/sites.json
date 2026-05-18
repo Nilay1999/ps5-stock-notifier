@@ -5,8 +5,8 @@
       "name": "Amazon India",
       "enabled": true,
       "urls": [
-        "https://www.amazon.in/s?k=PlayStation+5+Slim+Console",
-        "https://www.amazon.in/s?k=Sony+PS5+Slim+Digital+Edition"
+        "https://www.amazon.in/s?k=PlayStation+5+Slim+Console+Disc+Edition",
+        "https://www.amazon.in/s?k=PS5+Slim+Disc+Edition"
       ],
       "inStockPatterns": ["add to cart", "buy now", "in stock"],
       "outOfStockPatterns": ["currently unavailable", "out of stock", "unavailable", "we don't know when or if this item will be back in stock"]
@@ -16,8 +16,8 @@
       "name": "Flipkart",
       "enabled": true,
       "urls": [
-        "https://www.flipkart.com/search?q=playstation%205%20slim%20console",
-        "https://www.flipkart.com/search?q=ps5%20slim%20digital%20edition"
+        "https://www.flipkart.com/search?q=playstation+5+slim+disc+edition",
+        "https://www.flipkart.com/search?q=ps5+slim+disc+edition"
       ],
       "inStockPatterns": ["add to cart", "buy now"],
       "outOfStockPatterns": ["sold out", "currently out of stock", "coming soon", "notify me"]
@@ -27,8 +27,7 @@
       "name": "Croma",
       "enabled": true,
       "urls": [
-        "https://www.croma.com/searchB?q=playstation%205%20slim%20console%3Arelevance&text=playstation%205%20slim%20console",
-        "https://www.croma.com/searchB?q=ps5%20digital%20edition%3Arelevance&text=ps5%20digital%20edition"
+        "https://www.croma.com/searchB?q=playstation%205%20slim%20console%3Arelevance&text=playstation%205%20slim%20console"
       ],
       "inStockPatterns": ["add to cart", "buy now", "delivery available", "express delivery", "store pickup"],
       "outOfStockPatterns": ["out of stock", "currently unavailable", "notify me", "sold out", "not available", "store pickup only", "no results found", "we couldn't find"]
@@ -38,8 +37,7 @@
       "name": "Reliance Digital",
       "enabled": true,
       "urls": [
-        "https://www.reliancedigital.in/search?q=playstation%205%20slim",
-        "https://www.reliancedigital.in/search?q=ps5%20digital%20edition"
+        "https://www.reliancedigital.in/search?q=playstation+5+slim+disc"
       ],
       "inStockPatterns": ["add to cart", "buy now", "delivery available"],
       "outOfStockPatterns": ["out of stock", "currently unavailable", "notify me", "sold out", "not available", "no results", "no products found"]
@@ -49,8 +47,7 @@
       "name": "Vijay Sales",
       "enabled": true,
       "urls": [
-        "https://www.vijaysales.com/search/PlayStation%205%20Slim",
-        "https://www.vijaysales.com/search/PS5%20Digital%20Edition"
+        "https://www.vijaysales.com/search/PlayStation%205%20Slim"
       ],
       "inStockPatterns": ["add to cart", "buy now"],
       "outOfStockPatterns": ["out of stock", "currently unavailable", "notify me", "sold out", "not available", "enquire now", "call to order", "no products found", "no results found"]
@@ -60,8 +57,7 @@
       "name": "Blinkit",
       "enabled": false,
       "urls": [
-        "https://blinkit.com/s/?q=playstation%205",
-        "https://blinkit.com/s/?q=ps5%20slim"
+        "https://blinkit.com/s/?q=playstation%205%20slim%20disc"
       ],
       "inStockPatterns": ["add to cart"],
       "outOfStockPatterns": ["out of stock", "currently unavailable", "not available", "sold out"]
